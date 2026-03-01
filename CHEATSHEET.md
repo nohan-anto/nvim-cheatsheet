@@ -1,8 +1,7 @@
-                                                                                                                                                                                              
-  # Neovim Cheatsheet                                                                                                                                                                         
+# Neovim Cheatsheet                                                                                                                                                                         
                                                                                                                                                                                               
   > **Leader key:** `Space`                                                                                                                                                                   
-                                                                                                                                                                                              
+                  
   ---                                                                                                                                                                                         
                   
   ## Basic Navigation
@@ -237,8 +236,20 @@
 
   ## JS / TS / Bun
 
+  ### Autocomplete (nvim-cmp)
+  Suggestions appear automatically as you type from the language server, current file words, and file paths.
+
+  | Key | Action |
+  |-----|--------|
+  | *(just type)* | Suggestions appear automatically |
+  | `Tab` | Select next suggestion |
+  | `Shift-Tab` | Select previous suggestion |
+  | `Enter` | Confirm / accept suggestion |
+  | `Ctrl-Space` | Force open suggestions |
+  | `Ctrl-e` | Close the suggestion menu |
+
   ### LSP (typescript-language-server)
-  Auto-activates for `.js`, `.jsx`, `.ts`, `.tsx` files when a `tsconfig.json`, `jsconfig.json`, or `package.json` is found upward.
+  Auto-activates for `.js`, `.jsx`, `.ts`, `.tsx` when a `tsconfig.json`, `jsconfig.json`, or `package.json` is found.
 
   | Key | Action |
   |-----|--------|
@@ -250,10 +261,9 @@
 
   Linting via **eslint** runs automatically on save.
 
-  > Install the server: `bun add -g typescript-language-server typescript`
+  > Install: `bun add -g typescript-language-server typescript`
 
   ### package-info.nvim (package.json helper)
-
   Open a `package.json` file, then:
 
   | Key | Action |
@@ -265,11 +275,13 @@
   | `Space ni` | Install a new package |
   | `Space nv` | Change version of package under cursor |
 
-  Uses **bun** by default as the package manager.
+  Uses **bun** as the package manager.
 
   ---
 
   ## LSP (Go — gopls)
+
+  Auto-activates for `.go` files. Also gets autocomplete via nvim-cmp.
 
   | Key | Action |
   |-----|--------|
@@ -279,24 +291,23 @@
   | `[d` / `]d` | Previous / next diagnostic |
   | `:lua vim.lsp.buf.format()` | Format file |
 
-  Linting runs automatically on save for: Lua, Python, Shell, C, Rust, CSS, HTML.
+  Linting runs automatically on save for: Lua, Python, Shell, C, Rust, CSS, HTML, JS, TS.
 
   ---
 
   ## Go to Home Page (Alpha Dashboard)
 
-  The Alpha dashboard (home screen) appears automatically when:
-  - Neovim is launched with no file argument: `nvim`
-  - All buffers are closed (`Space U` then `:q` or close last buffer)
+  The Alpha dashboard appears automatically when:
+  - Neovim launched with no file: `nvim`
+  - All buffers are closed
 
-  To manually return to it, close all buffers:
+  To manually return, close all buffers:
   ```
-  :BufferCloseAllButCurrent  (close others first)
-  :bd                        (delete current buffer — triggers alpha)
+  :bd    ← delete current buffer (repeat until alpha appears)
   ```
-  Or simply quit and reopen: `:qa` then `nvim`
+  Or quit and reopen: `:qa` then `nvim`
 
-  ### Alpha Dashboard Shortcuts (on home screen)
+  ### Alpha Dashboard Shortcuts
   | Key | Action |
   |-----|--------|
   | `e` | New empty file |
@@ -314,14 +325,15 @@
   ## Quick Reference Card
 
   ```
-  MOVE     h j k l / w b e / gg G / { }
-  MODES    i a o O / v V Ctrl-v / Esc
-  EDIT     dd yy p u Ctrl-r / ciw .
-  SEARCH   /pat n N * :noh
-  WINDOWS  Ctrl-h/j/k/l | F5-F8 resize
-  BUFFERS  Shift-h/l | Alt-1..9 | Spc-q
-  FILES    Spc-f/g/G | Spc-t (tree)
-  SAVE     Spc-w | QUIT :q :qa :q!
-  HOME     close all buffers → alpha auto-opens
+  MOVE       h j k l / w b e / gg G / { }
+  MODES      i a o O / v V Ctrl-v / Esc
+  EDIT       dd yy p u Ctrl-r / ciw .
+  SEARCH     /pat n N * :noh
+  COMPLETE   Tab/S-Tab navigate · Enter confirm · Ctrl-e close
+  WINDOWS    Ctrl-h/j/k/l | F5-F8 resize
+  BUFFERS    Shift-h/l | Alt-1..9 | Spc-q
+  FILES      Spc-f/g/G | Spc-t (tree)
+  SAVE       Spc-w | QUIT :q :qa :q!
+  HOME       :bd until alpha appears · or :qa then nvim
   ```
 
